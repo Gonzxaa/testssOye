@@ -1,0 +1,30 @@
+.contenido {
+	text-transform: capitalize;
+	position: relative;
+}
+
+.card-img-top {
+	width: 90px;
+	height: 90px;
+}
+
+footer {
+	position: relative;
+}
+
+.img-buscador {
+	width: 50px;
+	height: 50px;
+}
+
+h1{
+	font-family: Haettenschweiler;
+}
+
+.card{
+	font-family: Gill Sans;
+}
+
+h4{
+	font-family: Tahoma;
+}

@@ -1,0 +1,167 @@
+const items = document.getElementById('items')
+const templateCard = document.getElementById('template-card').content;
+const fragment = document.createDocumentFragment()
+const formulario = document.querySelector('#formulario');
+const resultado = document.querySelector('#resultado')
+
+/*INICIO Carga canciones*/
+const pintarCard = respuesta => {
+	respuesta.canciones.forEach(element => {
+		templateCard.querySelector('h3').textContent = element.nombre
+		templateCard.querySelector('img').setAttribute("src", "./imagenes/icon_" + element.icono + ".svg")
+		templateCard.querySelector('img').setAttribute("alt", "Icono Numero: " + element.icono)
+		templateCard.querySelector('audio').setAttribute("src", "./canciones/" + element.ruta)
+		templateCard.querySelector('audio').setAttribute("alt", "Cancion Nombre: " + element.nombre)
+
+		const clone = templateCard.cloneNode(true)
+		fragment.appendChild(clone)
+	});
+	items.appendChild(fragment)
+}
+/*FIN Carga canciones*/
+
+
+/*INICIO Creacion Formulario Busqueda*/
+const producto = respuesta => {
+	const filtrar = () => {
+		resultado.innerHTML = '';
+		const texto = formulario.value.toLowerCase()
+		for (let producto of respuesta.canciones) {
+			let nombre = producto.nombre.toLowerCase()
+			if (nombre.indexOf(texto) !== -1) {
+				console.log(texto)
+				resultado.innerHTML += `
+				<td><img src="./imagenes/icon_${producto.icono}.svg" alt="${producto.nombre}" class="img-buscador"></td>
+				<td><b>${producto.nombre.toUpperCase()}</b></td>
+				<td><audio src="./canciones/${producto.ruta}" controls></audio>
+				`
+			}
+		}
+		if (resultado.innerHTML === '') {
+			resultado.innerHTML += `
+			<td>No existen coincidencias..</td>
+				`
+		}
+	}
+	formulario.addEventListener('keyup', filtrar)
+	resultado.innerHTML = '';
+}
+/*FIN Creacion Formulario Busqueda*/
+
+
+/*INICIO Carga de Datos*/
+function cargarDatos() {
+	$.ajax({
+		url: "http://127.0.0.1:5500/datos.json"
+	}).done(function (respuesta) {
+		pintarCard(respuesta)
+		producto(respuesta)
+	});
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+	cargarDatos()
+})
+/*FIN Carga de Datos*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	const cantRep = []; //90, 80, 70 --> Top 3 canciones con mayor reproduccion
+
+	const arrDes = element.reproducciones
+	console.log(arrDes)
+
+	function top3(numbers) {
+		numbers = numbers.sort((a, b) => b - a);
+		return [numbers[0], numbers[1], numbers[2]];
+	};
+	cantRep.push(top3(arrDes))
+	console.log(top3(arrDes))
+	console.log(cantRep)
+
+	//console.log(top3(arrDes));
+	//console.log(cantRep)
+
+
+
+
+
+
+
+		
+	//console.log(cantRep)
+
+	//console.log(filtradoRep)
+
+	//console.log("reps filtradas: " + filtradoRep);
+	//console.log("reps acutales: " + cantRep)
+
+	//for (let i = 0; filtradoRep[i] === cantRep[i]; i++) {
+	//	console.log("res? " + filtradoRep[i] + " / " + cantRep[i])
+	//}
+
+	
+
+
+
+	
+	if (filtradoRep[0] === cantRep[0]) {
+		console.log("res? " + filtradoRep[0] + " / " + cantRep[0])
+		console.log("hay if")
+	}else{
+		console.log("no hay if")
+		console.log("res? " + filtradoRep[0] + " / " + cantRep[0])
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	const arrDes = cantRep
+
+	function top3(numbers) {
+		numbers = numbers.sort((a, b) => b - a).slice(0, 5);
+		return [numbers[0], numbers[1], numbers[2]];
+	};
+
+	top3(arrDes).forEach(element => {
+		const fdg = element
+		filtradoRep.push(fdg)
+	});
