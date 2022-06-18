@@ -1,7 +1,7 @@
 /*INICIO Carga de Datos*/
 function cargarDatos() {
 	$.ajax({
-		url: "http://127.0.0.1:5500/datos.json"
+		url: "https://gonzxaa.github.io/testssOye/datos.json"
 	}).done(function (respuesta) {
 		pintarCard(respuesta);
 		formularioCanciones(respuesta);
